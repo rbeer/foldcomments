@@ -201,3 +201,15 @@ class UnfoldCommentsCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         comments = CommentNodes(self.view)
         comments.unfold()
+
+class EventDump(sublime_plugin.EventListener):
+    def on_load(self, view):
+        comments = CommentNodes(view)
+        mode = load_settings('foldcomments.sublime-settings').get('fold_on_file_load')
+
+        # Bail if mode is neither 'fold' nor 'unfold'
+        if mode != 'fold' and mode != 'unfold':
+            return
+
+        # call comments.(un)?fold
+        getattr(comments, mode)()

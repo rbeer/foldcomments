@@ -35,5 +35,13 @@
 	 * @param {Number} baz
 	 * @return {Number} Foobar number
 	 */
-	"fold_doc_block_comments": true
+	"fold_doc_block_comments": true,
+
+	// Fold comments to this state, whenever a
+	// file is opened.
+	// Recognizes the values
+	//   - "fold"   : Folds all comments on_load
+  //   - "unfold" : Undfolds all comments on_load
+  //   - "off"		: Leaves the opened view untouched
+	"fold_on_file_load": "off"
 }
